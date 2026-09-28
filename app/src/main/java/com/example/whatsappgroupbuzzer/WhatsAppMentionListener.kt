@@ -30,7 +30,7 @@ class WhatsAppMentionListener : NotificationListenerService() {
             extras.getParcelableArray(Notification.EXTRA_MESSAGES)?.forEach { raw ->
                 @Suppress("DEPRECATION")
                 val message = raw as? android.os.Bundle ?: return@forEach
-                append('\n').append(message.getCharSequence("text").orEmpty())
+                append('\n').append(message.getCharSequence("text")?.toString().orEmpty())
             }
         }
         return NotificationDetails(listOf(title, conversationTitle).filter { it.isNotBlank() }, text)
